@@ -28,7 +28,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 .app-shell { min-height: 100dvh; }
 .overview-mode { background: transparent; }
 .overview-mode .site-nav { background: rgba(12, 18, 25, .46); border-bottom-color: rgba(190, 215, 215, .16); backdrop-filter: blur(24px) saturate(135%); -webkit-backdrop-filter: blur(24px) saturate(135%); }
-.overview-mode .brand { font-size: 22px; }
+.overview-mode .brand strong { font-size: 20px; }
 .overview-mode .top-nav { justify-content: flex-start; gap: 4px; }
 .overview-mode .top-nav button { width: auto; padding: 8px 11px; color: rgba(218, 229, 230, .72); }
 .overview-mode .top-nav button svg { display: none; }
@@ -39,8 +39,15 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 .overview-mode .page-content { max-width: none; padding: 0 42px 70px; }
 .overview-mode .menu-toggle { display: none; }
 .site-nav { position: fixed; inset: 0 0 auto; z-index: 20; width: 100%; height: 78px; display: flex; flex-direction: row; align-items: center; padding: 14px 28px; background: rgba(12, 18, 25, .7); border-bottom: 1px solid var(--glass-border); backdrop-filter: blur(20px) saturate(125%); -webkit-backdrop-filter: blur(20px) saturate(125%); }
-.brand { flex: 0 0 auto; margin: 0 34px 0 0; padding: 0; border: 0; background: transparent; color: var(--text); text-align: left; font-size: 20px; letter-spacing: -.05em; }
-.brand span { color: var(--blue); }
+.brand { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 10px; margin: 0 34px 0 0; padding: 0; border: 0; background: transparent; color: var(--text); text-align: left; }
+.brand strong { font-size: 18px; font-weight: 650; letter-spacing: -.055em; }
+.brand strong span { color: #a9bfe9; font-weight: 520; }
+.brand-mark { position: relative; width: 24px; height: 24px; display: block; border: 1px solid rgba(164, 190, 232, .72); border-radius: 7px 3px 7px 3px; transform: rotate(-8deg); }
+.brand-mark::before { position: absolute; inset: 5px; border: 1px solid rgba(123, 159, 232, .5); border-radius: 2px; content: ''; }
+.brand-mark i, .brand-mark b { position: absolute; left: 5px; width: 13px; height: 1px; display: block; background: #9db9ec; content: ''; transform: rotate(-38deg); }
+.brand-mark i { top: 10px; }
+.brand-mark b { top: 13px; background: rgba(123, 159, 232, .45); transform: rotate(38deg); }
+.brand:hover .brand-mark { border-color: #c1d4fa; transform: rotate(-8deg) translateY(-1px); }
 .top-nav { flex: 1; display: flex; flex-direction: row; align-items: center; gap: 3px; }
 .top-nav button { width: auto; display: flex; align-items: center; gap: 10px; padding: 9px 10px; border: 0; border-radius: 4px; background: transparent; color: var(--muted); text-align: left; font-size: 13px; }
 .top-nav button svg { width: 15px; color: #666a72; }

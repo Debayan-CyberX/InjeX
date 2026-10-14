@@ -264,6 +264,7 @@ function App() {
     <div className={`app-shell ${page === 'Overview' ? 'overview-mode' : ''} route-${page.toLowerCase().replace(/\s+/g, '-')}`}>
       <aside className={`site-nav ${menuOpen ? 'open' : ''}`}>
         <button className="brand" type="button" onClick={() => { setPage('Overview'); setMenuOpen(false); }} aria-label="Go to Overview">
+          <span className="brand-mark" aria-hidden="true"><i /><b /></span>
           <strong>Inje<span>X</span></strong>
         </button>
         <nav className="top-nav" aria-label="Primary">
