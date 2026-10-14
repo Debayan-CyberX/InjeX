@@ -40,6 +40,19 @@ npm run dev
 
 Open http://localhost:5173. The frontend expects the API at `http://localhost:8000`.
 
+### GitHub Pages
+
+The frontend is deployed by `.github/workflows/deploy-pages.yml`. In the repository settings,
+set **Pages → Build and deployment → Source** to **GitHub Actions**. The workflow builds
+`frontend/` and publishes `frontend/dist` at:
+
+`https://<account>.github.io/InjeX/`
+
+GitHub Pages hosts only the frontend. For live detection on the public site, add a repository
+variable named `VITE_API_URL` containing the public backend URL without the `/api` suffix,
+for example `https://injex-api.example.com`. If it is not set, local development continues
+to use `http://localhost:8000`.
+
 ## Endpoints
 
 `POST /api/detect`, `POST /api/adversarial/test`, `GET /api/metrics`, `GET /api/comparison`, `GET|DELETE /api/history`, `GET /api/health`, `GET /api/dataset/summary`, and `POST /api/evaluate`.
