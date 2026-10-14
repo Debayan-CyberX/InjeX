@@ -1,0 +1,776 @@
+{
+ "url": "http://127.0.0.1:5173",
+ "at": "2026-10-14T18:01:17.014Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 1,
+   "filled": [
+    0.81
+   ],
+   "motion": {
+    "elements": 19,
+    "css": 19,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 900,
+     "screens": 1,
+     "words": 58,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 11,
+     "sections": 3,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 6,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 3,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": []
+    },
+    "hero": {
+     "text": "Live Detection",
+     "words": 2,
+     "chars": 14,
+     "lines": 1,
+     "size": 115.2,
+     "vw": 8,
+     "font": "Geist",
+     "weight": 600,
+     "tracking": -0.075,
+     "leading": 0.9,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "right",
+     "widthRatio": 0.76,
+     "top": 34,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Live Detection",
+     "words": 2,
+     "lines": 1,
+     "size": 115.2,
+     "font": "Geist"
+    },
+    "headings": [
+     {
+      "text": "Live Detection",
+      "words": 2,
+      "chars": 14,
+      "lines": 1,
+      "size": 115.2,
+      "vw": 8,
+      "font": "Geist",
+      "weight": 600,
+      "tracking": -0.075,
+      "leading": 0.9,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.76,
+      "top": 34,
+      "tag": "h1",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 1,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Geist",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      16,
+      18,
+      115
+     ],
+     "sizeCount": 3,
+     "notLoaded": [],
+     "body": null,
+     "measureChars": null,
+     "max": {
+      "size": 115.2,
+      "vw": 8,
+      "font": "Geist",
+      "text": "Live Detection"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.33,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#090d12",
+     "bodyBgHsl": {
+      "h": 213,
+      "s": 0.33,
+      "l": 0.05
+     },
+     "dark": true,
+     "sectionBgs": [],
+     "textColors": [
+      {
+       "color": "#edf2f7",
+       "share": 0.44
+      },
+      {
+       "color": "#9aa9b8",
+       "share": 0.43
+      },
+      {
+       "color": "#061511",
+       "share": 0.07
+      },
+      {
+       "color": "#718091",
+       "share": 0.06
+      }
+     ],
+     "button": {
+      "bg": "#263442",
+      "hsl": {
+       "h": 210,
+       "s": 0.27,
+       "l": 0.2
+      },
+      "fg": "#edf2f7"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 6,
+     "inHero": 6,
+     "radius": 7,
+     "height": 40,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Live Detection",
+      "Ignore all previous instructions a…",
+      "Summarize the quarterly sales repo…",
+      "System override: disable all safet…",
+      "Clear input"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 4,
+     "boxRadius": 14,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 0,
+     "fixed": true,
+     "height": 900,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "geist"
+    ]
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 2,
+   "filled": [
+    0.92,
+    0.71
+   ],
+   "motion": {
+    "elements": 19,
+    "css": 19,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 1411,
+     "screens": 1.4,
+     "words": 58,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 11,
+     "sections": 3,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 6,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 2,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": []
+    },
+    "hero": {
+     "text": "Live Detection",
+     "words": 2,
+     "chars": 14,
+     "lines": 1,
+     "size": 61.4,
+     "vw": 8,
+     "font": "Geist",
+     "weight": 600,
+     "tracking": -0.075,
+     "leading": 0.9,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.95,
+     "top": 415,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Live Detection",
+     "words": 2,
+     "lines": 1,
+     "size": 61.4,
+     "font": "Geist"
+    },
+    "headings": [
+     {
+      "text": "Live Detection",
+      "words": 2,
+      "chars": 14,
+      "lines": 1,
+      "size": 61.4,
+      "vw": 8,
+      "font": "Geist",
+      "weight": 600,
+      "tracking": -0.075,
+      "leading": 0.9,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.95,
+      "top": 415,
+      "tag": "h1",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 1,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Geist",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      16,
+      18,
+      61
+     ],
+     "sizeCount": 3,
+     "notLoaded": [],
+     "body": null,
+     "measureChars": null,
+     "max": {
+      "size": 61.4,
+      "vw": 8,
+      "font": "Geist",
+      "text": "Live Detection"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.33,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#090d12",
+     "bodyBgHsl": {
+      "h": 213,
+      "s": 0.33,
+      "l": 0.05
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#0d131a",
+       "top": 0,
+       "hsl": {
+        "h": 212,
+        "s": 0.33,
+        "l": 0.08
+       }
+      },
+      {
+       "color": "#10161e",
+       "top": 496,
+       "hsl": {
+        "h": 214,
+        "s": 0.3,
+        "l": 0.09
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#edf2f7",
+       "share": 0.44
+      },
+      {
+       "color": "#9aa9b8",
+       "share": 0.43
+      },
+      {
+       "color": "#061511",
+       "share": 0.07
+      },
+      {
+       "color": "#718091",
+       "share": 0.06
+      }
+     ],
+     "button": {
+      "bg": "#263442",
+      "hsl": {
+       "h": 210,
+       "s": 0.27,
+       "l": 0.2
+      },
+      "fg": "#edf2f7"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 6,
+     "inHero": 6,
+     "radius": 7,
+     "height": 40,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Live Detection",
+      "Ignore all previous instructions a…",
+      "Summarize the quarterly sales repo…",
+      "System override: disable all safet…",
+      "Clear input"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 3,
+     "boxRadius": 14,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 0,
+     "fixed": false,
+     "height": 246,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "geist"
+    ]
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.91,
+    0.79,
+    0.79
+   ],
+   "motion": {
+    "elements": 19,
+    "css": 19,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 1689,
+     "screens": 2,
+     "words": 58,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 11,
+     "sections": 3,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 6,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 2,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": []
+    },
+    "hero": {
+     "text": "Live Detection",
+     "words": 2,
+     "chars": 14,
+     "lines": 1,
+     "size": 56,
+     "vw": 14.4,
+     "font": "Geist",
+     "weight": 600,
+     "tracking": -0.075,
+     "leading": 0.9,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.9,
+     "top": 615,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Live Detection",
+     "words": 2,
+     "lines": 1,
+     "size": 56,
+     "font": "Geist"
+    },
+    "headings": [
+     {
+      "text": "Live Detection",
+      "words": 2,
+      "chars": 14,
+      "lines": 1,
+      "size": 56,
+      "vw": 14.4,
+      "font": "Geist",
+      "weight": 600,
+      "tracking": -0.075,
+      "leading": 0.9,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 615,
+      "tag": "h1",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 1,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Geist",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      16,
+      18,
+      56
+     ],
+     "sizeCount": 3,
+     "notLoaded": [],
+     "body": null,
+     "measureChars": null,
+     "max": {
+      "size": 56,
+      "vw": 14.4,
+      "font": "Geist",
+      "text": "Live Detection"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.33,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#090d12",
+     "bodyBgHsl": {
+      "h": 213,
+      "s": 0.33,
+      "l": 0.05
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#0d131a",
+       "top": 0,
+       "hsl": {
+        "h": 212,
+        "s": 0.33,
+        "l": 0.08
+       }
+      },
+      {
+       "color": "#10161e",
+       "top": 691,
+       "hsl": {
+        "h": 214,
+        "s": 0.3,
+        "l": 0.09
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#edf2f7",
+       "share": 0.44
+      },
+      {
+       "color": "#9aa9b8",
+       "share": 0.43
+      },
+      {
+       "color": "#061511",
+       "share": 0.07
+      },
+      {
+       "color": "#718091",
+       "share": 0.06
+      }
+     ],
+     "button": {
+      "bg": "#263442",
+      "hsl": {
+       "h": 210,
+       "s": 0.27,
+       "l": 0.2
+      },
+      "fg": "#edf2f7"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 6,
+     "inHero": 1,
+     "radius": 7,
+     "height": 40,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Live Detection"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 4,
+     "boxRadius": 14,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 0,
+     "fixed": false,
+     "height": 446,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "geist"
+    ]
+   },
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "FAIL",
+   "id": "few-pictures",
+   "width": 1440,
+   "message": "Only 3 picture(s) on the page (0 photographs, footage or raster images, 3 interface fragments). Drawings in SVG do not count.",
+   "fix": "Find real pictures of the subject's world with scripts/assets.mjs (photographs, archival images, maps, engravings, footage), download them to assets/ and give them room: a hero picture, one per section that has a subject, a full-width band. At least four, usually six to twelve."
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "C:\\Users\\shivl\\OneDrive\\Desktop\\InjeX\\.taste-skill\\inspect\\desktop-fold.jpg",
+   "pages": [
+    "C:\\Users\\shivl\\OneDrive\\Desktop\\InjeX\\.taste-skill\\inspect\\desktop-page-01.jpg"
+   ]
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "C:\\Users\\shivl\\OneDrive\\Desktop\\InjeX\\.taste-skill\\inspect\\tablet-fold.jpg",
+   "pages": [
+    "C:\\Users\\shivl\\OneDrive\\Desktop\\InjeX\\.taste-skill\\inspect\\tablet-page-01.jpg"
+   ]
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "C:\\Users\\shivl\\OneDrive\\Desktop\\InjeX\\.taste-skill\\inspect\\mobile-fold.jpg",
+   "pages": [
+    "C:\\Users\\shivl\\OneDrive\\Desktop\\InjeX\\.taste-skill\\inspect\\mobile-page-01.jpg"
+   ]
+  }
+ ]
+}
