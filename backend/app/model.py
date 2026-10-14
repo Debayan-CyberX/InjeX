@@ -4,6 +4,18 @@ from typing import Optional, Tuple
 import re
 from .preprocessing import normalize_prompt
 
+INJECTION_SIGNALS = re.compile(
+    r"\b(ignore|disregard|override|bypass|jailbreak|unrestricted|disable\s+(?:all\s+)?safety|"
+    r"reveal\s+(?:the\s+)?(?:system|hidden)\s+prompt|highest[-\s]+priority|admin(?:istrator)?\s+commands?|"
+    r"delete\s+all\s+(?:stored\s+)?records?)\b",
+    re.IGNORECASE,
+)
+BENIGN_TASK_SIGNALS = re.compile(
+    r"^\s*(summarize|summarise|rewrite|rephrase|extract|translate|explain|draft|list|calculate|"
+    r"organize|format|proofread|classify)\b",
+    re.IGNORECASE,
+)
+
 class Detector:
     """Loads an optional sklearn pipeline; never prevents the API from starting."""
     def __init__(self):
@@ -49,6 +61,12 @@ class Detector:
         try:
             score = float(pipeline.predict_proba([normalized])[0][1])
             threshold = float(self.thresholds.get(detector, 0.5))
-            return ("prompt_injection" if score >= threshold else "benign"), score, normalized
+            if INJECTION_SIGNALS.search(normalized):
+                label = "prompt_injection"
+            elif BENIGN_TASK_SIGNALS.search(normalized):
+                label = "benign"
+            else:
+                label = "prompt_injection" if score >= threshold else "benign"
+            return label, score, normalized
         except Exception:
             return "unavailable", None, normalized

@@ -10,7 +10,7 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.pipeline import FeatureUnion, Pipeline
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, classification_report
 from datasets import load_dataset
 from app.adversarial import adversarial_transform
 from app.preprocessing import normalize_prompt
@@ -70,10 +70,27 @@ def train():
     adversarial_test = [adversarial_transform(x) for x in test_text]
     def predictions(model, texts, threshold):
         return (model.predict_proba(texts)[:, 1] >= threshold).astype(int)
+    improved_clean_predictions = predictions(improved, test_text, improved_threshold)
+    improved_confusion_matrix = confusion_matrix(test_y, improved_clean_predictions, labels=[0, 1]).tolist()
+    improved_classification_report = classification_report(
+        test_y,
+        improved_clean_predictions,
+        labels=[0, 1],
+        target_names=["benign", "prompt_injection"],
+        output_dict=True,
+        zero_division=0,
+    )
     result = {"dataset": "neuralchemy/Prompt-injection-dataset", "seed": SEED,
       "threshold_selection": "accuracy maximized on validation split",
       "thresholds": {"baseline": baseline_threshold, "improved": improved_threshold},
       "splits": {k: len(v) for k, v in dataset.items()}, "augmented_train": len(augmented_text),
+      "evaluation": {
+          "detector": "improved",
+          "scenario": "clean",
+          "labels": ["benign", "prompt_injection"],
+          "confusion_matrix": improved_confusion_matrix,
+          "classification_report": improved_classification_report,
+      },
       "baseline": {"clean": metrics(test_y, predictions(baseline, test_text, baseline_threshold)), "adversarial": metrics(test_y, predictions(baseline, adversarial_test, baseline_threshold))},
       "improved": {"clean": metrics(test_y, predictions(improved, test_text, improved_threshold)), "adversarial": metrics(test_y, predictions(improved, adversarial_test, improved_threshold))}}
     MODEL_DIR.mkdir(exist_ok=True)
