@@ -13,6 +13,8 @@ import {
   Search,
   Send,
   Trash2,
+  Moon,
+  Sun,
 } from 'lucide-react';
 import './style.css';
 
@@ -236,8 +238,13 @@ function Card({
 function App() {
   const [page, setPage] = useState<Page>('Overview');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem('injex-theme') === 'dark');
   const [health, setHealth] = useState<HealthResponse | null>(null);
   const [healthError, setHealthError] = useState<string>('');
+
+  useEffect(() => {
+    localStorage.setItem('injex-theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
 
   useEffect(() => {
     let cancelled = false;
@@ -261,7 +268,7 @@ function App() {
   }, []);
 
   return (
-    <div className={`app-shell ${page === 'Overview' ? 'overview-mode' : ''} route-${page.toLowerCase().replace(/\s+/g, '-')}`}>
+    <div className={`app-shell ${page === 'Overview' ? 'overview-mode' : ''} ${darkMode ? 'dark-mode' : ''} route-${page.toLowerCase().replace(/\s+/g, '-')}`}>
       <aside className={`site-nav ${menuOpen ? 'open' : ''}`}>
         <button className="brand" type="button" onClick={() => { setPage('Overview'); setMenuOpen(false); }} aria-label="Go to Overview">
           <span className="brand-mark" aria-hidden="true"><i /><b /></span>
@@ -280,6 +287,16 @@ function App() {
             </button>
           ))}
         </nav>
+        <button
+          className="theme-toggle"
+          type="button"
+          onClick={() => setDarkMode((enabled) => !enabled)}
+          aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+          title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+        >
+          {darkMode ? <Sun size={16} aria-hidden="true" /> : <Moon size={16} aria-hidden="true" />}
+          <span>{darkMode ? 'Light' : 'Dark'}</span>
+        </button>
       </aside>
       <button className="menu-toggle" type="button" onClick={() => setMenuOpen((open) => !open)} aria-expanded={menuOpen} aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}>
         {menuOpen ? <X size={18} /> : <Menu size={18} />}
