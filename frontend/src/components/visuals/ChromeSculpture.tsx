@@ -13,8 +13,10 @@ import {
   MeshPhysicalMaterial,
   PerspectiveCamera,
   PMREMGenerator,
+  Raycaster,
   Scene,
   SRGBColorSpace,
+  Vector2,
   WebGLRenderer,
 } from "three";
 import { useInView, useVisualLoop, useVisuals } from "./VisualSystem";
@@ -29,6 +31,10 @@ export default function ChromeSculpture() {
   const draw = useRef<((time: number) => void) | null>(null);
   const { running } = useVisuals();
   const visible = useInView(root);
+  const interactive = useRef(running && visible);
+  useEffect(() => {
+    interactive.current = running && visible;
+  }, [running, visible]);
   const [ready, setReady] = useState(false);
   const [generation, setGeneration] = useState(0);
   useVisualLoop(draw, running && visible, ready, 30);
@@ -131,21 +137,73 @@ export default function ChromeSculpture() {
     let time = 0;
     let pointerX = 0,
       pointerY = 0;
+    let followX = 0,
+      followY = 0;
+    let hover = 0,
+      hoverTarget = 0;
+    let hoverAngle = 0,
+      targetAngle = 0;
+    let pointerInside = false,
+      needsPick = false,
+      dragging = false;
+    let orbitX = 0,
+      orbitY = 0,
+      previousX = 0,
+      previousY = 0;
+    const hero = host.closest<HTMLElement>(".void-hero") || host;
+    const coordinates = new Vector2(3, 3);
+    const raycaster = new Raycaster();
+    const pick = () => {
+      needsPick = false;
+      if (!interactive.current || !pointerInside) {
+        hoverTarget = 0;
+        hero.dataset.sculptureHover = "false";
+        return false;
+      }
+      mesh.updateMatrixWorld(true);
+      geometry.computeBoundingSphere();
+      raycaster.setFromCamera(coordinates, camera);
+      const hit = raycaster.intersectObject(mesh, false)[0];
+      hoverTarget = hit ? 1 : 0;
+      hero.dataset.sculptureHover = hit ? "true" : "false";
+      if (hit) {
+        const point = mesh.worldToLocal(hit.point);
+        targetAngle = Math.atan2(point.y / 0.92, point.x);
+      }
+      return Boolean(hit);
+    };
     const render = (next: number) => {
       if (context.isContextLost()) return;
       time = next;
+      if (!dragging && (needsPick || hoverTarget > 0)) pick();
+      hover += (hoverTarget - hover) * 0.12;
+      followX += (pointerX - followX) * 0.1;
+      followY += (pointerY - followY) * 0.1;
+      hoverAngle +=
+        Math.atan2(
+          Math.sin(targetAngle - hoverAngle),
+          Math.cos(targetAngle - hoverAngle),
+        ) * 0.12;
       let offset = 0;
       for (let i = 0; i <= SEGMENTS; i++) {
         const u = (i / SEGMENTS) * Math.PI * 2;
+        const distance = Math.atan2(
+          Math.sin(u - hoverAngle),
+          Math.cos(u - hoverAngle),
+        );
+        const influence = hover * Math.exp(-distance * distance * 2.3);
         const radius =
           1.48 +
           0.22 * Math.sin(2 * u + time * 0.24) +
-          0.1 * Math.cos(3 * u - time * 0.17);
+          0.1 * Math.cos(3 * u - time * 0.17) +
+          influence * 0.22;
         const twist =
           u +
           0.52 * Math.sin(time * 0.19) +
-          0.2 * Math.sin(2 * u - time * 0.13);
-        const thickness = 0.48 + 0.11 * Math.sin(3 * u + time * 0.23);
+          0.2 * Math.sin(2 * u - time * 0.13) +
+          influence * 0.65;
+        const thickness =
+          0.48 + 0.11 * Math.sin(3 * u + time * 0.23) + influence * 0.1;
         const cos = Math.cos(u),
           sin = Math.sin(u),
           ct = Math.cos(twist),
@@ -158,7 +216,10 @@ export default function ChromeSculpture() {
           positions[offset++] = (radius + radial) * cos;
           positions[offset++] = (radius + radial) * sin * 0.92;
           positions[offset++] =
-            0.33 * Math.sin(2 * u + time * 0.21) + a * st + b * ct;
+            0.33 * Math.sin(2 * u + time * 0.21) +
+            a * st +
+            b * ct +
+            influence * 0.28;
         }
       }
       attribute.needsUpdate = true;
@@ -178,13 +239,16 @@ export default function ChromeSculpture() {
         stitch(i * (SIDES + 1), i * (SIDES + 1) + SIDES);
       for (let j = 0; j <= SIDES; j++) stitch(j, SEGMENTS * (SIDES + 1) + j);
       mesh.rotation.set(
-        0.3 + Math.sin(time * 0.11) * 0.16 + pointerY * 0.06,
-        -0.4 + Math.sin(time * 0.09) * 0.38 + pointerX * 0.1,
+        0.3 + Math.sin(time * 0.11) * 0.16 + followY * hover * 0.38 + orbitY,
+        -0.4 + Math.sin(time * 0.09) * 0.38 + followX * hover * 0.55 + orbitX,
         -0.43 + Math.sin(time * 0.08) * 0.14,
       );
       mesh.position.y = 0.04 + Math.sin(time * 0.18) * 0.08;
+      material.roughness = 0.13 - hover * 0.035;
       renderer.render(scene, camera);
       target.dataset.time = time.toFixed(3);
+      target.dataset.hover = hover.toFixed(3);
+      target.dataset.orbit = `${orbitX.toFixed(3)},${orbitY.toFixed(3)}`;
     };
     draw.current = render;
     const resize = () => {
@@ -196,8 +260,59 @@ export default function ChromeSculpture() {
       render(time);
     };
     const pointer = (event: PointerEvent) => {
-      pointerX = event.clientX / innerWidth - 0.5;
-      pointerY = event.clientY / innerHeight - 0.5;
+      if (event.pointerType !== "mouse" && event.pointerType !== "pen") return;
+      if (!interactive.current) return;
+      if (dragging) {
+        orbitX += (event.clientX - previousX) * 0.008;
+        orbitY = Math.max(
+          -1.1,
+          Math.min(1.1, orbitY + (event.clientY - previousY) * 0.008),
+        );
+      }
+      previousX = event.clientX;
+      previousY = event.clientY;
+      const rect = target.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+      const onControl =
+        event.target instanceof Element &&
+        Boolean(
+          event.target.closest(
+            "a,button,input,textarea,select,summary,[role='tab']",
+          ),
+        );
+      pointerInside = x >= 0 && x <= 1 && y >= 0 && y <= 1 && !onControl;
+      coordinates.set(x * 2 - 1, 1 - y * 2);
+      pointerX = Math.max(-1, Math.min(1, coordinates.x));
+      pointerY = Math.max(-1, Math.min(1, coordinates.y));
+      needsPick = true;
+    };
+    const press = (event: PointerEvent) => {
+      if (
+        event.button !== 0 ||
+        !interactive.current ||
+        (event.pointerType !== "mouse" && event.pointerType !== "pen")
+      )
+        return;
+      pointer(event);
+      if (!pick()) return;
+      dragging = true;
+      hero.dataset.sculptureDrag = "true";
+      event.preventDefault();
+    };
+    const release = () => {
+      dragging = false;
+      hero.dataset.sculptureDrag = "false";
+      needsPick = true;
+    };
+    const leave = () => {
+      pointerInside = false;
+      if (!dragging) hoverTarget = 0;
+      hero.dataset.sculptureHover = "false";
+    };
+    const blur = () => {
+      release();
+      leave();
     };
     const lost = (event: Event) => {
       event.preventDefault();
@@ -208,6 +323,11 @@ export default function ChromeSculpture() {
     const observer = new ResizeObserver(resize);
     observer.observe(host);
     window.addEventListener("pointermove", pointer, { passive: true });
+    window.addEventListener("pointerdown", press);
+    window.addEventListener("pointerup", release);
+    window.addEventListener("pointercancel", blur);
+    window.addEventListener("blur", blur);
+    hero.addEventListener("pointerleave", leave);
     target.addEventListener("webglcontextlost", lost);
     target.addEventListener("webglcontextrestored", restored);
     resize();
@@ -218,6 +338,13 @@ export default function ChromeSculpture() {
       draw.current = null;
       observer.disconnect();
       window.removeEventListener("pointermove", pointer);
+      window.removeEventListener("pointerdown", press);
+      window.removeEventListener("pointerup", release);
+      window.removeEventListener("pointercancel", blur);
+      window.removeEventListener("blur", blur);
+      hero.removeEventListener("pointerleave", leave);
+      delete hero.dataset.sculptureHover;
+      delete hero.dataset.sculptureDrag;
       target.removeEventListener("webglcontextlost", lost);
       target.removeEventListener("webglcontextrestored", restored);
       geometry.dispose();

@@ -95,14 +95,12 @@ export default function App() {
     reload,
   } = useApi<HealthResponse>("/health");
   const mainRef = useRef<HTMLElement>(null);
-  const shellRef = useRef<HTMLDivElement>(null);
   const previousPage = useRef(page);
   useEffect(() => {
     const onHash = () => {
       setPage(currentPage());
       setOpen(false);
-      window.scrollTo({ top: 0 });
-      shellRef.current?.scrollTo({ top: 0, behavior: "instant" });
+      window.scrollTo({ top: 0, behavior: "instant" });
     };
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
@@ -271,7 +269,7 @@ export default function App() {
           </div>
         </div>
       </aside>
-      <div className="main-shell" ref={shellRef}>
+      <div className="main-shell">
         <header className="topbar">
           <div className="breadcrumbs">
             <button

@@ -149,7 +149,7 @@ export default function Overview({
         </div>
         <div className="hero-object-caption">
           <span>STUDY 001 / THE TRUST BOUNDARY</span>
-          <span>LIVING CHROME / CONTINUOUS FORM</span>
+          <span>HOVER TO SCULPT / DRAG TO ROTATE</span>
         </div>
         <div className="void-hero-bottom">
           <span>DETECT / DISTORT / MEASURE</span>

@@ -62,14 +62,9 @@ body {
 .silver-workspace .main-shell {
   position: relative;
   margin-right: 12px;
-  margin-bottom: 89px;
-  height: calc(100dvh - 90px);
-  min-height: 0;
-  overflow: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
-  scrollbar-color: #c1d3ea59 transparent;
-  scroll-padding-top: 85px;
+  margin-bottom: 0;
+  min-height: 100dvh;
+  overflow: visible;
   background: linear-gradient(145deg, #d5e7ff05, #d5e7ff00 48%), #0d152185;
   border: 1px solid var(--glass-edge);
   border-top: 0;
@@ -79,7 +74,8 @@ body {
     0 18px 65px #00000024;
 }
 .silver-workspace .main-content {
-  min-height: calc(100dvh - 166px);
+  min-height: calc(100dvh - 64px);
+  padding-bottom: calc(115px + env(safe-area-inset-bottom));
 }
 .silver-workspace .topbar {
   background: #101925cc;
@@ -492,7 +488,8 @@ body {
 /* Live chrome is a separate lazy-loaded 3D scene; the photographic original is its fallback. */
 .silver-workspace .void-hero {
   background: transparent;
-  min-height: calc(100dvh - 165px);
+  min-height: calc(100dvh - 64px);
+  max-height: none;
 }
 .silver-workspace .hero-sculpture {
   width: 72%;
@@ -524,6 +521,13 @@ body {
 }
 .chrome-scene[data-rendered="true"] > img {
   opacity: 0;
+}
+.silver-workspace .void-hero[data-sculpture-hover="true"] {
+  cursor: grab;
+}
+.silver-workspace .void-hero[data-sculpture-drag="true"] {
+  cursor: grabbing;
+  user-select: none;
 }
 .chrome-scene:after {
   content: "";
@@ -759,7 +763,7 @@ body {
 
 @media (min-width: 1700px) {
   .silver-workspace .void-hero {
-    min-height: calc(100dvh - 165px);
+    min-height: calc(100dvh - 64px);
   }
   .silver-workspace .hero-sculpture {
     width: 76%;
@@ -790,8 +794,7 @@ body {
     margin-right: 0;
     border-left: 0;
     border-right: 0;
-    height: calc(100dvh - 84px);
-    margin-bottom: 83px;
+    margin-bottom: 0;
     border-radius: 0 0 15px 15px;
   }
   .silver-workspace .void-hero {

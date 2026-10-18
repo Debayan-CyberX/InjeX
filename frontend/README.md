@@ -93,8 +93,8 @@ See [VOID design notes](../docs/VOID_DESIGN.md) for the visual system and origin
 
 ## Live visuals
 
-The floating dock links the four main tools and opens Research navigation for the remaining five pages. Live light pauses/resumes both the silver background and chrome mesh; the setting persists in local storage. System reduced-motion preferences are always honored. The hero stops rendering when scrolled out of view, and visual loops stop in hidden tabs. The workspace scrolls inside its glass frame, leaving a clear area for the dock.
+The floating dock links the four main tools and opens Research navigation for the remaining five pages. Live light pauses/resumes both the silver background and chrome mesh; the setting persists in local storage. System reduced-motion preferences are always honored. The hero stops rendering when scrolled out of view, and visual loops stop in hidden tabs. The glass workspace grows to the full page length and uses normal document scrolling. The dock floats above the page; bottom padding keeps the footer reachable. Hover the chrome surface to deform it locally, or drag it with a mouse or pen to rotate it. Touch gestures keep normal page scrolling.
 
-Three.js is loaded in a separate overview-only chunk (about 133 KB gzip). The studio reflections are generated locally without downloading an HDR or model. Background rendering is capped at 24 FPS and 1100 by 800 pixels; the sculpture is capped at 30 FPS with bounded pixel density. WebGL-unavailable browsers keep the original static artwork and all research functionality.
+Three.js is loaded in a separate overview-only chunk (about 134 KB gzip). The studio reflections are generated locally without downloading an HDR or model. Background rendering is capped at 24 FPS and 1100 by 800 pixels; the sculpture is capped at 30 FPS with bounded pixel density. WebGL-unavailable browsers keep the original static artwork and all research functionality.
 
 See [Silver glass verification](../docs/SILVER_GLASS_VERIFICATION.md) for this visual pass.
