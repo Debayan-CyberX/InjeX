@@ -76,7 +76,13 @@ export default function ChromeSculpture() {
     studio.width = 1024;
     studio.height = 512;
     const ctx = studio.getContext("2d")!;
-    ctx.fillStyle = "#090c09";
+    // Broad neutral fill keeps the curved silhouette readable between highlights.
+    const studioFill = ctx.createLinearGradient(0, 0, 0, 512);
+    studioFill.addColorStop(0, "#555550");
+    studioFill.addColorStop(0.3, "#282827");
+    studioFill.addColorStop(0.6, "#41413d");
+    studioFill.addColorStop(1, "#30302e");
+    ctx.fillStyle = studioFill;
     ctx.fillRect(0, 0, 1024, 512);
     const boxes = [
       [80, 50, 85, 375],
@@ -86,11 +92,10 @@ export default function ChromeSculpture() {
     ];
     for (const [x, y, width, height] of boxes) {
       const light = ctx.createLinearGradient(x, 0, x + width, 0);
-      const accent = x === 660;
-      light.addColorStop(0, accent ? "#344025" : "#9a9e8d");
-      light.addColorStop(0.14, accent ? "#8b9e60" : "#f1efe7");
-      light.addColorStop(0.82, accent ? "#c7f36b" : "#e2e5d8");
-      light.addColorStop(1, accent ? "#4b5934" : "#787e70");
+      light.addColorStop(0, "#a3a29c");
+      light.addColorStop(0.14, "#f5f3ed");
+      light.addColorStop(0.82, "#e8e6df");
+      light.addColorStop(1, "#85847e");
       ctx.fillStyle = light;
       ctx.fillRect(x, y, width, height);
     }
@@ -118,9 +123,9 @@ export default function ChromeSculpture() {
       }
     geometry.setIndex(indices);
     const material = new MeshPhysicalMaterial({
-      color: new Color("#8a9180"),
+      color: new Color("#b9b9b4"),
       metalness: 1,
-      roughness: 0.13,
+      roughness: 0.2,
       clearcoat: 1,
       clearcoatRoughness: 0.12,
       envMapIntensity: 1.6,
@@ -132,7 +137,7 @@ export default function ChromeSculpture() {
     const key = new DirectionalLight(0xf1efe7, 2.2);
     key.position.set(-3, 5, 4);
     scene.add(key);
-    const fill = new DirectionalLight(0xa2ada0, 1);
+    const fill = new DirectionalLight(0xe0dfd9, 1.3);
     fill.position.set(4, -2, 3);
     scene.add(fill);
     let time = 0;
@@ -245,7 +250,7 @@ export default function ChromeSculpture() {
         -0.43 + Math.sin(time * 0.08) * 0.14,
       );
       mesh.position.y = 0.04 + Math.sin(time * 0.18) * 0.08;
-      material.roughness = 0.13 - hover * 0.035;
+      material.roughness = 0.2 - hover * 0.025;
       renderer.render(scene, camera);
       target.dataset.time = time.toFixed(3);
       target.dataset.hover = hover.toFixed(3);

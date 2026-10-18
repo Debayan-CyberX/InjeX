@@ -940,5 +940,5 @@ body {
   box-shadow: inset 2px 0 var(--accent);
 }
 .silver-workspace .hero-sculpture img {
-  filter: grayscale(1) brightness(0.72) sepia(0.1);
+  filter: grayscale(1) brightness(0.92);
 }

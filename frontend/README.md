@@ -99,4 +99,4 @@ Three.js is loaded in a separate overview-only chunk (about 134 KB gzip). The st
 
 See [Silver glass verification](../docs/SILVER_GLASS_VERIFICATION.md) for this visual pass.
 
-The active palette uses obsidian `#090B09`, warm ivory `#F1EFE7`, smoked graphite `#181D18`, sage-grey `#A2ADA0`, acid-lime `#C7F36B`, and coral threat indicators `#ED9690`. Flowing rays use graphite, muted sage and pale warm highlights. Lime is reserved for interaction and measured signals, plus a narrow reflection on the titanium sculpture.
+The active palette uses obsidian `#090B09`, warm ivory `#F1EFE7`, smoked graphite `#181D18`, sage-grey `#A2ADA0`, acid-lime `#C7F36B`, and coral threat indicators `#ED9690`. Flowing rays use graphite, muted sage and pale warm highlights. Lime is reserved for interaction and measured signals, while the titanium sculpture uses brighter neutral graphite and ivory reflections for visibility.
