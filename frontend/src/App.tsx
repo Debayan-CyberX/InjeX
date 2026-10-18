@@ -24,6 +24,10 @@ import type { Page, HealthResponse } from "./lib/api";
 import { useApi } from "./lib/api";
 import { EmptyState, PageHeading, ResearchFooter } from "./components/ui";
 import Overview from "./pages/Overview";
+import SilverBackdrop from "./components/visuals/SilverBackdrop";
+import CommandDock from "./components/visuals/CommandDock";
+import VisualBoundary from "./components/visuals/VisualBoundary";
+import { useVisuals } from "./components/visuals/VisualSystem";
 
 const Detect = lazy(() => import("./pages/Detect"));
 const Attack = lazy(() => import("./pages/Attack"));
@@ -81,6 +85,7 @@ const descriptions: Record<Page, string> = {
 };
 
 export default function App() {
+  const { running } = useVisuals();
   const [page, setPage] = useState<Page>(currentPage);
   const [open, setOpen] = useState(false);
   const {
@@ -90,12 +95,14 @@ export default function App() {
     reload,
   } = useApi<HealthResponse>("/health");
   const mainRef = useRef<HTMLElement>(null);
+  const shellRef = useRef<HTMLDivElement>(null);
   const previousPage = useRef(page);
   useEffect(() => {
     const onHash = () => {
       setPage(currentPage());
       setOpen(false);
       window.scrollTo({ top: 0 });
+      shellRef.current?.scrollTo({ top: 0, behavior: "instant" });
     };
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
@@ -149,7 +156,13 @@ export default function App() {
       ? "API connected"
       : "Service offline";
   return (
-    <div className={`app-shell ${page === "Overview" ? "overview-mode" : ""}`}>
+    <div
+      className={`app-shell silver-workspace ${page === "Overview" ? "overview-mode" : ""}`}
+      data-motion={running ? "live" : "still"}
+    >
+      <VisualBoundary>
+        <SilverBackdrop />
+      </VisualBoundary>
       <a
         className="skip-link"
         href="#main-content"
@@ -258,7 +271,7 @@ export default function App() {
           </div>
         </div>
       </aside>
-      <div className="main-shell">
+      <div className="main-shell" ref={shellRef}>
         <header className="topbar">
           <div className="breadcrumbs">
             <button
@@ -276,7 +289,7 @@ export default function App() {
           </div>
           <div className="topbar-right">
             <span className="research-pill">
-              <Circle size={6} fill="currentColor" /> VOID EDITION
+              <Circle size={6} fill="currentColor" /> SILVER / VOID
             </span>
             <a
               href="https://github.com/Debayan-CyberX/InjeX"
@@ -350,6 +363,9 @@ export default function App() {
           <ResearchFooter />
         </main>
       </div>
+      <VisualBoundary>
+        <CommandDock page={page} />
+      </VisualBoundary>
     </div>
   );
 }

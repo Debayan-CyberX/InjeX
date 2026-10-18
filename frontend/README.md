@@ -1,6 +1,6 @@
-# InjeX / VOID — Experimental Monochrome
+# InjeX / Silver VOID
 
-React + TypeScript + Vite frontend for the existing InjeX FastAPI service. Nine distinctive research views share a monochrome design system, original chrome artwork, and restrained acid-lime controls. Every prediction, benchmark, chart, and record comes from the existing FastAPI service.
+React + TypeScript + Vite frontend for the existing InjeX FastAPI service. Nine distinctive research views share a silver liquid-glass design system adapted from the user's InboxIQ workspace, a flowing light field, a refractive command dock, and a continuously deforming chrome mesh. Every prediction, benchmark, chart, and record comes from the existing FastAPI service.
 
 ## Run locally
 
@@ -73,8 +73,12 @@ The deployment base remains `/InjeX/`. Hash routing supports refreshes, shared s
 - `src/pages/Comparison.tsx`, `Analytics.tsx`, `History.tsx`, `Dataset.tsx`: benchmark selection and CSV export, inspectable confusion matrix, forensic event ledger, and dataset provenance.
 - `src/pages/Architecture.tsx`, `About.tsx`: actual pipeline, limitations, methodology and verified team credits.
 - `src/components`: accessible result states, shared research headings, CSV downloads, and metric definitions.
-- `src/void.css`, `void-research.css`, `void-responsive.css`: the VOID design system, page compositions, and responsive layouts.
-- `public/images/void-chrome.webp`: original 84 KB chrome form study for the cinematic introduction.
+- `src/void.css`, `void-research.css`, `void-responsive.css`: research layouts and responsive foundations.
+- `src/silver-glass.css`: translucent workspace, raised glass controls, and the InboxIQ-inspired floating dock.
+- `src/components/visuals`: motion preferences, silver backdrop, refractive dock, and lazy-loaded Three.js chrome sculpture.
+- `src/lib/visuals`: disposable WebGL surfaces and decorative shaders.
+- `public/visuals-LICENSE.txt`, `three-LICENSE.txt`: visual integration license notices.
+- `public/images/void-chrome.webp`: original 84 KB chrome form study retained as the no-WebGL and loading fallback.
 - `public/fonts`: locally hosted fonts with original licenses. No font CDN is required at runtime.
 
 ## Data semantics
@@ -86,3 +90,11 @@ The adversarial endpoint returns transformed variants and their improved-detecto
 Dataset label counts describe the **training split**, while split totals cover all loaded splits. History holds up to 200 records in shared process memory and resets on an API process restart.
 
 See [VOID design notes](../docs/VOID_DESIGN.md) for the visual system and original asset prompt, and [the verification record](../docs/VOID_VERIFICATION.md) for completed checks and deployment evidence.
+
+## Live visuals
+
+The floating dock links the four main tools and opens Research navigation for the remaining five pages. Live light pauses/resumes both the silver background and chrome mesh; the setting persists in local storage. System reduced-motion preferences are always honored. The hero stops rendering when scrolled out of view, and visual loops stop in hidden tabs. The workspace scrolls inside its glass frame, leaving a clear area for the dock.
+
+Three.js is loaded in a separate overview-only chunk (about 133 KB gzip). The studio reflections are generated locally without downloading an HDR or model. Background rendering is capped at 24 FPS and 1100 by 800 pixels; the sculpture is capped at 30 FPS with bounded pixel density. WebGL-unavailable browsers keep the original static artwork and all research functionality.
+
+See [Silver glass verification](../docs/SILVER_GLASS_VERIFICATION.md) for this visual pass.

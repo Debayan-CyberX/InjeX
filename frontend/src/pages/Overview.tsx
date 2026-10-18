@@ -1,4 +1,6 @@
-﻿import { useRef, useState } from "react";
+import { lazy, Suspense, useRef, useState } from "react";
+import VisualBoundary from "../components/visuals/VisualBoundary";
+import { useVisuals } from "../components/visuals/VisualSystem";
 import {
   ArrowDown,
   ArrowRight,
@@ -10,6 +12,19 @@ import {
 } from "lucide-react";
 import { useApi, formatPercent, promptOptions } from "../lib/api";
 import type { HealthResponse, Page, ComparisonResponse } from "../lib/api";
+
+const ChromeSculpture = lazy(
+  () => import("../components/visuals/ChromeSculpture"),
+);
+const chromeFallback = (
+  <img
+    src={`${import.meta.env.BASE_URL}images/void-chrome.webp`}
+    alt=""
+    width="1536"
+    height="1024"
+    fetchPriority="high"
+  />
+);
 
 const chapters = [
   {
@@ -48,6 +63,7 @@ export default function Overview({
   const [preview, setPreview] = useState(promptOptions[0].text);
   const [preset, setPreset] = useState(0);
   const sculpture = useRef<HTMLDivElement>(null);
+  const { running } = useVisuals();
   const launch = () => {
     try {
       sessionStorage.setItem("injex-draft", preview);
@@ -60,6 +76,7 @@ export default function Overview({
         className="void-hero"
         onPointerMove={(event) => {
           if (
+            !running ||
             window.matchMedia(
               "(prefers-reduced-motion: reduce), (pointer: coarse)",
             ).matches
@@ -76,19 +93,17 @@ export default function Overview({
         }
       >
         <div className="hero-sculpture" ref={sculpture}>
-          <img
-            src={`${import.meta.env.BASE_URL}images/void-chrome.webp`}
-            alt="An original twisted chrome ribbon with an open center, representing the boundary between language and instruction"
-            width="1536"
-            height="1024"
-            fetchPriority="high"
-          />
+          <VisualBoundary fallback={chromeFallback}>
+            <Suspense fallback={chromeFallback}>
+              <ChromeSculpture />
+            </Suspense>
+          </VisualBoundary>
         </div>
         <div className="void-hero-meta">
           <span>
             <i className="crosshair" /> INJEX / PROMPT SECURITY RESEARCH
           </span>
-          <span>VOID EDITION — 001</span>
+          <span>SILVER STUDY / 001</span>
         </div>
         <div className="void-hero-copy">
           <span className="hero-pretitle">THE INVISIBLE INSTRUCTION</span>
@@ -134,7 +149,7 @@ export default function Overview({
         </div>
         <div className="hero-object-caption">
           <span>STUDY 001 / THE TRUST BOUNDARY</span>
-          <span>FORM STUDY · CHROME / VOID</span>
+          <span>LIVING CHROME / CONTINUOUS FORM</span>
         </div>
         <div className="void-hero-bottom">
           <span>DETECT / DISTORT / MEASURE</span>
