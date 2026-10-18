@@ -287,7 +287,7 @@ export default function App() {
           </div>
           <div className="topbar-right">
             <span className="research-pill">
-              <Circle size={6} fill="currentColor" /> SILVER / VOID
+              <Circle size={6} fill="currentColor" /> OBSIDIAN / VOID
             </span>
             <a
               href="https://github.com/Debayan-CyberX/InjeX"

@@ -1,6 +1,6 @@
-# InjeX / Silver VOID
+# InjeX / Obsidian VOID
 
-React + TypeScript + Vite frontend for the existing InjeX FastAPI service. Nine distinctive research views share a silver liquid-glass design system adapted from the user's InboxIQ workspace, a flowing light field, a refractive command dock, and a continuously deforming chrome mesh. Every prediction, benchmark, chart, and record comes from the existing FastAPI service.
+React + TypeScript + Vite frontend for the existing InjeX FastAPI service. Nine distinctive research views share an obsidian and warm-ivory glass design system with restrained acid-lime highlights, a flowing light field, a refractive command dock, and a continuously deforming black-titanium mesh. Every prediction, benchmark, chart, and record comes from the existing FastAPI service.
 
 ## Run locally
 
@@ -74,11 +74,11 @@ The deployment base remains `/InjeX/`. Hash routing supports refreshes, shared s
 - `src/pages/Architecture.tsx`, `About.tsx`: actual pipeline, limitations, methodology and verified team credits.
 - `src/components`: accessible result states, shared research headings, CSV downloads, and metric definitions.
 - `src/void.css`, `void-research.css`, `void-responsive.css`: research layouts and responsive foundations.
-- `src/silver-glass.css`: translucent workspace, raised glass controls, and the InboxIQ-inspired floating dock.
-- `src/components/visuals`: motion preferences, silver backdrop, refractive dock, and lazy-loaded Three.js chrome sculpture.
+- `src/silver-glass.css`: translucent workspace, raised glass controls, and the smoked-glass floating dock.
+- `src/components/visuals`: motion preferences, graphite-sage backdrop, refractive dock, and lazy-loaded Three.js chrome sculpture.
 - `src/lib/visuals`: disposable WebGL surfaces and decorative shaders.
 - `public/visuals-LICENSE.txt`, `three-LICENSE.txt`: visual integration license notices.
-- `public/images/void-chrome.webp`: original 84 KB chrome form study retained as the no-WebGL and loading fallback.
+- `public/images/void-chrome.webp`: original 84 KB form study, tinted for the black-titanium theme and retained as the no-WebGL and loading fallback.
 - `public/fonts`: locally hosted fonts with original licenses. No font CDN is required at runtime.
 
 ## Data semantics
@@ -93,8 +93,10 @@ See [VOID design notes](../docs/VOID_DESIGN.md) for the visual system and origin
 
 ## Live visuals
 
-The floating dock links the four main tools and opens Research navigation for the remaining five pages. Live light pauses/resumes both the silver background and chrome mesh; the setting persists in local storage. System reduced-motion preferences are always honored. The hero stops rendering when scrolled out of view, and visual loops stop in hidden tabs. The glass workspace grows to the full page length and uses normal document scrolling. The dock floats above the page; bottom padding keeps the footer reachable. Hover the chrome surface to deform it locally, or drag it with a mouse or pen to rotate it. Touch gestures keep normal page scrolling.
+The floating dock links the four main tools and opens Research navigation for the remaining five pages. Live light pauses/resumes both the graphite-sage background and titanium mesh; the setting persists in local storage. System reduced-motion preferences are always honored. The hero stops rendering when scrolled out of view, and visual loops stop in hidden tabs. The glass workspace grows to the full page length and uses normal document scrolling. The dock floats above the page; bottom padding keeps the footer reachable. Hover the chrome surface to deform it locally, or drag it with a mouse or pen to rotate it. Touch gestures keep normal page scrolling.
 
 Three.js is loaded in a separate overview-only chunk (about 134 KB gzip). The studio reflections are generated locally without downloading an HDR or model. Background rendering is capped at 24 FPS and 1100 by 800 pixels; the sculpture is capped at 30 FPS with bounded pixel density. WebGL-unavailable browsers keep the original static artwork and all research functionality.
 
 See [Silver glass verification](../docs/SILVER_GLASS_VERIFICATION.md) for this visual pass.
+
+The active palette uses obsidian `#090B09`, warm ivory `#F1EFE7`, smoked graphite `#181D18`, sage-grey `#A2ADA0`, acid-lime `#C7F36B`, and coral threat indicators `#ED9690`. Flowing rays use graphite, muted sage and pale warm highlights. Lime is reserved for interaction and measured signals, plus a narrow reflection on the titanium sculpture.

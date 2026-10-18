@@ -103,7 +103,7 @@ export default function Overview({
           <span>
             <i className="crosshair" /> INJEX / PROMPT SECURITY RESEARCH
           </span>
-          <span>SILVER STUDY / 001</span>
+          <span>OBSIDIAN STUDY / 001</span>
         </div>
         <div className="void-hero-copy">
           <span className="hero-pretitle">THE INVISIBLE INSTRUCTION</span>

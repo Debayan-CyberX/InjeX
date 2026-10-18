@@ -1,4 +1,4 @@
-/** Original silver caustics. Analytic normals give the flowing sheet actual light and depth. */
+/** Graphite-sage caustics. Analytic normals preserve the flowing sheet's light and depth. */
 export const silverFlow = `
 precision highp float;
 varying vec2 v_texcoord;
@@ -26,11 +26,14 @@ void main() {
   float soft=pow(max(dot(normal,halfDirection),0.),4.);
   float ray=pow(.5+.5*sin(p.x*2.6+p.y*1.1+h*2.1+t*.075),18.);
   float edge=pow(.5+.5*sin(p.x*3.4-p.y*.8+h+t*.1),44.);
-  vec3 color=vec3(.025,.035,.05);
-  color+=vec3(.11,.13,.16)*soft;
-  color+=vec3(.34,.37,.41)*specular;
-  color+=vec3(.15,.17,.20)*ray;
-  color+=vec3(.17,.19,.22)*edge;
+  vec3 graphite=vec3(.145,.173,.149);
+  vec3 sage=vec3(.412,.459,.396);
+  vec3 highlight=vec3(.722,.761,.682);
+  vec3 color=vec3(.025,.031,.025);
+  color+=graphite*.60*soft;
+  color+=highlight*.48*specular;
+  color+=sage*.38*ray;
+  color+=sage*.30*edge;
   float vignette=smoothstep(1.35,.15,length((uv-.5)*vec2(1.,.8)));
   color*=.72+.28*vignette;
   gl_FragColor=vec4(color,1.);

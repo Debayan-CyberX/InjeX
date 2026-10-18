@@ -76,20 +76,21 @@ export default function ChromeSculpture() {
     studio.width = 1024;
     studio.height = 512;
     const ctx = studio.getContext("2d")!;
-    ctx.fillStyle = "#10151c";
+    ctx.fillStyle = "#090c09";
     ctx.fillRect(0, 0, 1024, 512);
     const boxes = [
       [80, 50, 85, 375],
       [340, 30, 180, 155],
-      [660, 0, 42, 512],
+      [660, 20, 16, 430],
       [805, 165, 155, 120],
     ];
     for (const [x, y, width, height] of boxes) {
       const light = ctx.createLinearGradient(x, 0, x + width, 0);
-      light.addColorStop(0, "#76818d");
-      light.addColorStop(0.14, "#ffffff");
-      light.addColorStop(0.82, "#f3f6fc");
-      light.addColorStop(1, "#87929e");
+      const accent = x === 660;
+      light.addColorStop(0, accent ? "#344025" : "#9a9e8d");
+      light.addColorStop(0.14, accent ? "#8b9e60" : "#f1efe7");
+      light.addColorStop(0.82, accent ? "#c7f36b" : "#e2e5d8");
+      light.addColorStop(1, accent ? "#4b5934" : "#787e70");
       ctx.fillStyle = light;
       ctx.fillRect(x, y, width, height);
     }
@@ -117,7 +118,7 @@ export default function ChromeSculpture() {
       }
     geometry.setIndex(indices);
     const material = new MeshPhysicalMaterial({
-      color: new Color("#e5e9ed"),
+      color: new Color("#8a9180"),
       metalness: 1,
       roughness: 0.13,
       clearcoat: 1,
@@ -128,10 +129,10 @@ export default function ChromeSculpture() {
     const mesh = new Mesh(geometry, material);
     mesh.frustumCulled = false;
     scene.add(mesh);
-    const key = new DirectionalLight(0xffffff, 2.2);
+    const key = new DirectionalLight(0xf1efe7, 2.2);
     key.position.set(-3, 5, 4);
     scene.add(key);
-    const fill = new DirectionalLight(0xcbd8ed, 1);
+    const fill = new DirectionalLight(0xa2ada0, 1);
     fill.position.set(4, -2, 3);
     scene.add(fill);
     let time = 0;

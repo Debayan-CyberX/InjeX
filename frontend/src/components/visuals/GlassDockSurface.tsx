@@ -3,7 +3,7 @@ import { createSurface } from "../../lib/visuals/surface";
 import fragment from "../../lib/visuals/liquid-glass.frag.glsl?raw";
 import { useVisualLoop, useVisuals } from "./VisualSystem";
 
-/** InboxIQ's capsule optics, sampling only InjeX's decorative silver field. */
+/** InboxIQ's capsule optics, sampling only InjeX's decorative graphite-sage field. */
 export default function GlassDockSurface() {
   const canvas = useRef<HTMLCanvasElement>(null);
   const draw = useRef<((time: number) => void) | null>(null);

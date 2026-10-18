@@ -33,9 +33,9 @@ void main() {
   color += texture2D(u_image, uv - vec2(stepSize.x, 0.0)).rgb * 0.175;
   color += texture2D(u_image, uv + vec2(0.0, stepSize.y)).rgb * 0.175;
   color += texture2D(u_image, uv - vec2(0.0, stepSize.y)).rgb * 0.175;
-  vec3 tint = mix(vec3(0.055,0.075,0.11), vec3(0.84,0.88,0.94), u_light);
+  vec3 tint = mix(vec3(0.050,0.065,0.050), vec3(0.90,0.90,0.86), u_light);
   color = mix(color, tint, mix(0.7,0.8,u_light));
-  color += vec3(0.64,0.78,0.96) * rim * 0.18 + edge * 0.025;
+  color += vec3(0.88,0.89,0.82) * rim * 0.18 + edge * 0.025;
   float mask = 1.0 - smoothstep(-1.0, 1.0, -distance);
   gl_FragColor = vec4(color, mask * 0.96);
 }
