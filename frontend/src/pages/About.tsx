@@ -1,132 +1,170 @@
-import { ArrowUpRight, Github } from "lucide-react";
-
+﻿import { ArrowUpRight } from "lucide-react";
 export default function About() {
   return (
-    <>
-      <section className="about-hero">
-        <span className="eyebrow">WHY WE BUILT INJEX</span>
+    <div className="manifesto">
+      <section className="manifesto-hero">
+        <div className="manifesto-meta">
+          <span className="eyebrow">A RESEARCH MANIFESTO</span>
+          <span className="mono">INJEX / 2026</span>
+        </div>
         <h2>
-          Language carries intent.
+          QUESTION
           <br />
-          <em>We study the boundary.</em>
+          THE
+          <br />
+          <span>INSTRUCTION.</span>
         </h2>
-        <p>
-          Prompt injections blur the line between data and instructions. InjeX
-          makes that boundary an object of study: something to inspect,
-          challenge, and measure.
-        </p>
-        <a
-          className="secondary"
-          href="https://github.com/Debayan-CyberX/InjeX"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Github size={16} /> Explore the repository <ArrowUpRight size={16} />
-        </a>
-        <span className="about-watermark" aria-hidden="true">
-          IX
-        </span>
+        <div className="manifesto-introduction">
+          <span className="manifesto-cross" aria-hidden="true">
+            ✳
+          </span>
+          <p>
+            Language is an interface.
+            <br />
+            Trust is a boundary.
+            <br />
+            <span>Neither should be invisible.</span>
+          </p>
+          <p>
+            InjeX is an academic research instrument for inspecting prompt
+            injections, testing adversarial transformations, and measuring the
+            limits of a conventional machine learning detector.
+          </p>
+        </div>
       </section>
-      <div className="about-editorial">
-        <span className="eyebrow">01 / THE APPROACH</span>
+      <section className="manifesto-section">
+        <span className="eyebrow">01 / OUR POSITION</span>
         <div>
           <h3>
-            A research instrument,
+            Make the invisible
             <br />
-            built for asking better questions.
+            <span>inspectable.</span>
           </h3>
           <p>
-            InjeX compares a baseline prompt-injection detector with a detector
-            trained using adversarial augmentation. Word and character TF-IDF
-            features feed a logistic regression classifier, with explicit rule
-            overrides in the prediction path.
+            A prompt is not only a string of words. It can also be an attempt to
+            redirect instructions, bypass policies, or influence a downstream
+            system. We built InjeX to study that input boundary through
+            experiments that can be inspected and repeated.
           </p>
           <p>
-            The Attack Lab generates obfuscated prompt variants using character
-            substitution, spacing changes, punctuation, instruction splitting,
-            and Unicode substitution. Comparison and Analytics expose the
-            evaluation evidence when training metadata is available.
+            The interface shows what the implementation can support: a
+            classification, a model probability, normalized input, actual
+            transformed variants, and stored evaluation evidence. Every result
+            must remain connected to its source.
           </p>
         </div>
-      </div>
-      <div className="about-editorial">
-        <span className="eyebrow">02 / THE LIMITATIONS</span>
+      </section>
+      <section className="manifesto-section">
+        <span className="eyebrow">02 / THE METHOD</span>
         <div>
           <h3>
-            Useful evidence.
+            Small models.
             <br />
-            Careful interpretation.
+            <span>Explicit decisions.</span>
           </h3>
-          <div className="limitation-grid">
-            <div>
-              <span>01</span>
-              <h4>Classification is a signal</h4>
-              <p>
-                A benign result does not guarantee safety. Context, tool
-                permissions, and downstream behavior remain outside this
-                detector.
-              </p>
-            </div>
-            <div>
-              <span>02</span>
-              <h4>Scores need context</h4>
-              <p>
-                Keyword and benign-task rules can override the model label. The
-                probability is not a calibrated security guarantee.
-              </p>
-            </div>
-            <div>
-              <span>03</span>
-              <h4>Research needs artifacts</h4>
-              <p>
-                Detections require trained models; evaluations require metadata.
-                Missing resources are reported as unavailable.
-              </p>
-            </div>
-            <div>
-              <span>04</span>
-              <h4>History is temporary</h4>
-              <p>
-                The API keeps up to 200 records in shared process memory.
-                History is not a private or durable account archive.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="about-editorial">
-        <span className="eyebrow">03 / THE PEOPLE</span>
-        <div>
-          <h3>Built through collaboration.</h3>
-          <div className="team-grid">
+          <div className="manifesto-principles">
             {[
-              { initials: "SJ", name: "Shripad Jadhav", roll: "K017" },
-              { initials: "DL", name: "Debayan Lahiry", roll: "K032" },
-              { initials: "SS", name: "Sarah Samel", roll: "K049" },
-            ].map((person) => (
-              <div key={person.roll}>
-                <span className="team-avatar">{person.initials}</span>
-                <h4>{person.name}</h4>
-                <p className="mono">{person.roll}</p>
+              [
+                "I",
+                "Represent",
+                "Word and character TF-IDF convert the input into features. Logistic regression produces an injection-class probability.",
+              ],
+              [
+                "II",
+                "Challenge",
+                "Character, spacing, punctuation, splitting, and Unicode transformations test how the detector responds to a changed surface.",
+              ],
+              [
+                "III",
+                "Compare",
+                "Baseline and adversarially trained models are measured against clean and transformed test inputs. Improvement is a question, not a promise.",
+              ],
+            ].map(([n, title, text]) => (
+              <article key={n}>
+                <span>{n}</span>
+                <h4>{title}</h4>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+          <a className="text-button" href="#/architecture">
+            Read the technical blueprint <ArrowUpRight size={16} />
+          </a>
+        </div>
+      </section>
+      <section className="manifesto-section">
+        <span className="eyebrow">03 / THE LIMITS</span>
+        <div>
+          <h3>
+            A useful instrument
+            <br />
+            <span>knows its limits.</span>
+          </h3>
+          <div className="manifesto-limits">
+            {[
+              [
+                "Classification is a signal.",
+                "A benign label does not guarantee safety. Application context, tool permissions, and downstream behavior are outside the detector.",
+              ],
+              [
+                "Probability is not certainty.",
+                "Keyword and benign-task rules can override the label. The probability is not a calibrated security guarantee.",
+              ],
+              [
+                "Evidence needs its artifacts.",
+                "Real predictions require trained models. Benchmarks require stored evaluation metadata. Missing evidence is reported as unavailable.",
+              ],
+              [
+                "History is temporary.",
+                "Up to 200 records are shared in API process memory. They reset on restart and are not a private account archive.",
+              ],
+            ].map(([title, text], i) => (
+              <div key={title}>
+                <span>0{i + 1}</span>
+                <h4>{title}</h4>
+                <p>{text}</p>
               </div>
             ))}
           </div>
-          <p className="muted">An academic cybersecurity project.</p>
         </div>
-      </div>
-      <div className="about-editorial">
-        <span className="eyebrow">04 / THE CONTEXT</span>
+      </section>
+      <section className="manifesto-section">
+        <span className="eyebrow">04 / THE PEOPLE</span>
+        <div>
+          <h3>
+            Research is
+            <br />
+            <span>a shared practice.</span>
+          </h3>
+          <div className="manifesto-team">
+            {[
+              ["01", "Shripad Jadhav", "K017"],
+              ["02", "Debayan Lahiry", "K032"],
+              ["03", "Sarah Samel", "K049"],
+            ].map(([n, name, roll]) => (
+              <div key={roll}>
+                <span>{n}</span>
+                <h4>{name}</h4>
+                <span>{roll}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="manifesto-section">
+        <span className="eyebrow">05 / THE CONTEXT</span>
         <div>
           <h3>
             Inspired by research.
             <br />
-            Explicit about implementation.
+            <span>Precise about the work.</span>
           </h3>
           <p>
-            The repository identifies DataSentinel as a research inspiration for
-            prompt-injection detection. This implementation uses TF-IDF and
-            logistic regression; it does not implement DataSentinel’s full
-            game-theoretic minimax detector.
+            The repository identifies DataSentinel as a research inspiration.
+            InjeX implements a TF-IDF and logistic regression pipeline, rather
+            than DataSentinel’s full game-theoretic minimax detector. Its
+            benchmarks measure the threshold-based path; interactive detection
+            additionally applies rule overrides.
           </p>
           <a
             className="text-button"
@@ -134,10 +172,16 @@ export default function About() {
             target="_blank"
             rel="noreferrer"
           >
-            Read the project methodology <ArrowUpRight size={15} />
+            Explore the methodology and source <ArrowUpRight size={16} />
           </a>
         </div>
+      </section>
+      <div className="manifesto-end">
+        <span>KEEP QUESTIONING.</span>
+        <a href="#/live-detection" aria-label="Open detector">
+          <ArrowUpRight size={56} strokeWidth={1} />
+        </a>
       </div>
-    </>
+    </div>
   );
 }

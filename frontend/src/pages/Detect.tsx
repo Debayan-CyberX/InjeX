@@ -253,7 +253,7 @@ export default function Detect() {
               <button
                 role="tab"
                 id={`detect-tab-${name.replace(/ /g, "-")}`}
-                aria-controls="detect-tab-panel"
+                aria-controls={result ? "detect-tab-panel" : undefined}
                 aria-selected={tab === name}
                 tabIndex={tab === name ? 0 : -1}
                 key={name}

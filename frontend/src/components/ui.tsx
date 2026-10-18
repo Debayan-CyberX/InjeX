@@ -72,11 +72,11 @@ export function PageHeading({
     <div className="page-heading">
       <div>
         <p className="eyebrow">
-          THE OBSERVATORY <span>/ {number}</span>
+          RESEARCH INSTRUMENT <span>/ {number}</span>
         </p>
         <h1>
           {title}
-          <span className="copper">.</span>
+          <span className="accent">.</span>
         </h1>
         <p>{description}</p>
       </div>

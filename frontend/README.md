@@ -1,6 +1,6 @@
-# InjeX / The Observatory
+# InjeX / VOID — Experimental Monochrome
 
-React + TypeScript + Vite frontend for the existing InjeX FastAPI service. All nine sections are retained. The redesign changes presentation and client navigation, not the machine learning pipeline or backend contracts.
+React + TypeScript + Vite frontend for the existing InjeX FastAPI service. Nine distinctive research views share a monochrome design system, original chrome artwork, and restrained acid-lime controls. Every prediction, benchmark, chart, and record comes from the existing FastAPI service.
 
 ## Run locally
 
@@ -44,6 +44,13 @@ npm run preview
 
 The production preview is at `http://localhost:4173/InjeX/`. With no `VITE_API_URL` set at build time, it deliberately shows service-unavailable states. It does not call localhost from a deployed website.
 
+## Live hosting
+
+- Frontend: https://debayan-cyberx.github.io/InjeX/
+- API: https://injex-api.onrender.com/
+
+The backend uses the selected free Render plan and can sleep between visits. Its shared in-memory history resets when the process restarts. The frontend allows up to 90 seconds for API requests.
+
 ## Deploy with the existing GitHub Pages workflow
 
 1. Host the existing FastAPI application on an HTTPS server. Install `backend/requirements.txt` there and start with `uvicorn app.main:app --host 0.0.0.0 --port <host-provided-port>` from `backend`. Provide trained model files and training metadata on that server if you want predictions and evaluation evidence.
@@ -63,12 +70,12 @@ The deployment base remains `/InjeX/`. Hash routing supports refreshes, shared s
 - `src/pages/Overview.tsx`: cinematic introduction, research chapters, prompt handoff and real comparison evidence.
 - `src/pages/Detect.tsx`: prompt editor, presets, model/preprocessing controls and response inspector.
 - `src/pages/Attack.tsx`: actual returned variants, graph/list/compare views, zoom and diff inspection.
-- `src/pages/Research.tsx`: comparison, analytics, history and dataset pages.
+- `src/pages/Comparison.tsx`, `Analytics.tsx`, `History.tsx`, `Dataset.tsx`: benchmark selection and CSV export, inspectable confusion matrix, forensic event ledger, and dataset provenance.
 - `src/pages/Architecture.tsx`, `About.tsx`: actual pipeline, limitations, methodology and verified team credits.
-- `src/components`: shared panels, empty states, custom SVG optical instrument and React Bits Spotlight Card.
-- `src/style.css`, `workspace.css`, `editorial.css`, `responsive.css`: design system and responsive layouts.
+- `src/components`: accessible result states, shared research headings, CSV downloads, and metric definitions.
+- `src/void.css`, `void-research.css`, `void-responsive.css`: the VOID design system, page compositions, and responsive layouts.
+- `public/images/void-chrome.webp`: original 84 KB chrome form study for the cinematic introduction.
 - `public/fonts`: locally hosted fonts with original licenses. No font CDN is required at runtime.
-- `public/react-bits-LICENSE.txt`: React Bits component license; Spotlight Card is incorporated into this application.
 
 ## Data semantics
 
@@ -78,4 +85,4 @@ The adversarial endpoint returns transformed variants and their improved-detecto
 
 Dataset label counts describe the **training split**, while split totals cover all loaded splits. History holds up to 200 records in shared process memory and resets on an API process restart.
 
-See [the verification record](../docs/REDESIGN_VERIFICATION.md) for completed checks and remaining limitations.
+See [VOID design notes](../docs/VOID_DESIGN.md) for the visual system and original asset prompt, and [the verification record](../docs/VOID_VERIFICATION.md) for completed checks and deployment evidence.

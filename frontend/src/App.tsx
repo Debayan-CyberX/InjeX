@@ -27,19 +27,10 @@ import Overview from "./pages/Overview";
 
 const Detect = lazy(() => import("./pages/Detect"));
 const Attack = lazy(() => import("./pages/Attack"));
-const research = () => import("./pages/Research");
-const Comparison = lazy(() =>
-  research().then((module) => ({ default: module.Comparison })),
-);
-const Analytics = lazy(() =>
-  research().then((module) => ({ default: module.Analytics })),
-);
-const HistoryView = lazy(() =>
-  research().then((module) => ({ default: module.HistoryView })),
-);
-const Dataset = lazy(() =>
-  research().then((module) => ({ default: module.Dataset })),
-);
+const Comparison = lazy(() => import("./pages/Comparison"));
+const Analytics = lazy(() => import("./pages/Analytics"));
+const HistoryView = lazy(() => import("./pages/History"));
+const Dataset = lazy(() => import("./pages/Dataset"));
 const Architecture = lazy(() => import("./pages/Architecture"));
 const About = lazy(() => import("./pages/About"));
 
@@ -188,7 +179,7 @@ export default function App() {
           </span>
           <span>
             Inje<span className="brand-x">X</span>
-            <small>THE OBSERVATORY</small>
+            <small>VOID / RESEARCH</small>
           </span>
         </a>
         <button
@@ -201,7 +192,7 @@ export default function App() {
         <div className="workspace-name">
           <span className="workspace-avatar">IX</span>
           <div>
-            Research workspace<small>Prompt security lab</small>
+            Prompt security<small>Experimental research</small>
           </div>
           <ChevronRight size={14} />
         </div>
@@ -262,7 +253,7 @@ export default function App() {
             <Github size={16} /> Open source research <ArrowUpRight size={14} />
           </a>
           <div className="sidebar-foot">
-            <span>INJEX / v1.0</span>
+            <span>INJEX / RESEARCH v2</span>
             <PanelLeftClose size={14} />
           </div>
         </div>
@@ -285,7 +276,7 @@ export default function App() {
           </div>
           <div className="topbar-right">
             <span className="research-pill">
-              <Circle size={6} fill="currentColor" /> RESEARCH EDITION
+              <Circle size={6} fill="currentColor" /> VOID EDITION
             </span>
             <a
               href="https://github.com/Debayan-CyberX/InjeX"
@@ -319,7 +310,7 @@ export default function App() {
                   {status}
                 </span>
               ) : (
-                <span className="page-edition">INJEX RESEARCH / 2026</span>
+                <span className="page-edition">MONOCHROME / 2026</span>
               )}
             </PageHeading>
           ) : null}

@@ -1,54 +1,40 @@
-import { useState } from "react";
+﻿import { useRef, useState } from "react";
 import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
   Braces,
-  ChevronRight,
   FlaskConical,
   GitCompareArrows,
   ScanLine,
 } from "lucide-react";
-import Observatory from "../components/Observatory";
-import SpotlightCard from "../components/SpotlightCard";
 import { useApi, formatPercent, promptOptions } from "../lib/api";
 import type { HealthResponse, Page, ComparisonResponse } from "../lib/api";
 
 const chapters = [
   {
-    word: "Detect",
-    no: "01",
+    number: "01",
+    name: "Detect",
+    subtitle: "INTERROGATE THE INPUT",
     icon: ScanLine,
-    caption: "READ BETWEEN THE INSTRUCTIONS",
-    text: "Inspect the input before it crosses a trust boundary. Normalize the text, extract its features, and examine the classification.",
+    text: "Separate the instruction from the language. Inspect normalization, classification, and the signal behind the score.",
     destination: "Live Detection" as Page,
-    code: ["raw_prompt", "normalize(input)", "classify(features)"],
   },
   {
-    word: "Distort",
-    no: "02",
+    number: "02",
+    name: "Distort",
+    subtitle: "CHALLENGE THE BOUNDARY",
     icon: FlaskConical,
-    caption: "CHANGE THE SURFACE",
-    text: "Substitute characters. Split instructions. Introduce Unicode. Explore how small changes can challenge a detector.",
+    text: "Change the characters. Split the instruction. Follow actual obfuscated variants through an adversarial experiment.",
     destination: "Attack Lab" as Page,
-    code: [
-      "ignore instructions",
-      "1gn0re instructi0ns",
-      "inspect the difference",
-    ],
   },
   {
-    word: "Measure",
-    no: "03",
+    number: "03",
+    name: "Measure",
+    subtitle: "RETURN TO THE EVIDENCE",
     icon: GitCompareArrows,
-    caption: "LET THE EVIDENCE SPEAK",
-    text: "Compare baseline and adversarially trained models on clean and transformed inputs. Every improvement needs evidence.",
+    text: "Put the baseline beside the improved detector. Study what changes, what holds, and what the metrics can actually tell you.",
     destination: "Comparison" as Page,
-    code: [
-      "baseline / improved",
-      "clean / adversarial",
-      "accuracy · precision · recall",
-    ],
   },
 ];
 export default function Overview({
@@ -60,178 +46,174 @@ export default function Overview({
 }) {
   const { data } = useApi<ComparisonResponse>("/comparison");
   const [preview, setPreview] = useState(promptOptions[0].text);
-  const [active, setActive] = useState(0);
+  const [preset, setPreset] = useState(0);
+  const sculpture = useRef<HTMLDivElement>(null);
   const launch = () => {
     try {
       sessionStorage.setItem("injex-draft", preview);
-    } catch {
-      /* The editor works without browser storage. */
-    }
+    } catch {}
     onNavigate("Live Detection");
   };
   return (
-    <div className="overview">
-      <section className="hero">
-        <div className="hero-topline">
-          <p className="eyebrow">
-            <span className="tiny-cross">+</span> ADVERSARIAL PROMPT RESEARCH
-          </p>
-          <span className="hero-index">
-            EST. 2026 <span>/</span> VOL. 001
+    <div className="void-overview">
+      <section
+        className="void-hero"
+        onPointerMove={(event) => {
+          if (
+            window.matchMedia(
+              "(prefers-reduced-motion: reduce), (pointer: coarse)",
+            ).matches
+          )
+            return;
+          const rect = event.currentTarget.getBoundingClientRect();
+          sculpture.current?.style.setProperty(
+            "--shift",
+            `${((event.clientX - rect.left) / rect.width - 0.5) * 14}px`,
+          );
+        }}
+        onPointerLeave={() =>
+          sculpture.current?.style.setProperty("--shift", "0px")
+        }
+      >
+        <div className="hero-sculpture" ref={sculpture}>
+          <img
+            src={`${import.meta.env.BASE_URL}images/void-chrome.webp`}
+            alt="An original twisted chrome ribbon with an open center, representing the boundary between language and instruction"
+            width="1536"
+            height="1024"
+            fetchPriority="high"
+          />
+        </div>
+        <div className="void-hero-meta">
+          <span>
+            <i className="crosshair" /> INJEX / PROMPT SECURITY RESEARCH
           </span>
+          <span>VOID EDITION — 001</span>
         </div>
-        <div className="hero-composition">
-          <div className="hero-copy">
-            <div className="hero-label">
-              <span /> LANGUAGE IS AN INTERFACE. AND A VULNERABILITY.
-            </div>
-            <h1>
-              Trust is an
-              <br />
-              attack
-              <br />
-              <em>surface.</em>
-            </h1>
-            <p className="hero-description">
-              See the instruction beneath the language.
-              <br />A research workspace to detect prompt injections,
-              <br className="desktop-break" /> challenge the detector, and
-              measure what holds.
-            </p>
-            <div className="hero-actions">
-              <button
-                className="primary"
-                onClick={() => onNavigate("Live Detection")}
-              >
-                Launch detector <ArrowUpRight size={18} />
-              </button>
-              <a
-                href="#research"
-                onClick={(event) => {
-                  event.preventDefault();
-                  document
-                    .getElementById("research")
-                    ?.scrollIntoView({
-                      behavior: window.matchMedia(
-                        "(prefers-reduced-motion: reduce)",
-                      ).matches
-                        ? "instant"
-                        : "smooth",
-                    });
-                }}
-              >
-                Explore the research <ArrowDown size={15} />
-              </a>
-            </div>
-          </div>
-          <Observatory />
-        </div>
-        <div className="hero-bottom">
-          <div>
-            <span className="mono">01 — 03</span>
-            <span className="hero-bottom-line" />
-            <span>DETECT. DISTORT. MEASURE.</span>
-          </div>
-          <span className="hero-bottom-right">
-            A clearer view of the input boundary <ArrowDown size={14} />
-          </span>
-        </div>
-      </section>
-      <section className="research-intro" id="research">
-        <div>
-          <p className="eyebrow">THE RESEARCH LOOP</p>
-          <h2>
-            One prompt.
+        <div className="void-hero-copy">
+          <span className="hero-pretitle">THE INVISIBLE INSTRUCTION</span>
+          <h1>
+            LANGUAGE.
             <br />
-            <span className="muted">Three perspectives.</span>
-          </h2>
-        </div>
-        <p>
-          Security is a question you keep asking.
-          <br />
-          Move from an initial signal to an adversarial experiment, then back to
-          the evidence.
-        </p>
-      </section>
-      <div className="chapter-grid">
-        {chapters.map((chapter, i) => (
-          <SpotlightCard
-            key={chapter.no}
-            className="chapter-card"
-            spotlightColor="#eba36d"
-            intensity={0.08}
-            borderGlow={0.2}
-            flare={false}
-          >
-            <div className="chapter-top">
-              <span className="mono">/{chapter.no}</span>
-              <chapter.icon size={22} strokeWidth={1.3} />
-            </div>
-            <p className="chapter-caption">{chapter.caption}</p>
-            <h3>
-              {chapter.word}
-              <span>↗</span>
-            </h3>
-            <p className="chapter-description">{chapter.text}</p>
-            <div className={`chapter-study study-${i}`} aria-hidden="true">
-              {chapter.code.map((line, n) => (
-                <div key={line}>
-                  <span>0{n + 1}</span>
-                  <code>{line}</code>
-                  {n === 1 ? <i /> : null}
-                </div>
-              ))}
-            </div>
+            UNDER
+            <br />
+            <span>OBSERVATION.</span>
+          </h1>
+          <div className="hero-caption">
+            <span className="mono">[ RESEARCH INSTRUMENT ]</span>
+            <p>
+              Look beyond what a prompt says.
+              <br />
+              Inspect its intent. Challenge the detector.
+              <br />
+              Let the evidence decide.
+            </p>
+          </div>
+          <div className="hero-actions">
+            <button
+              className="primary"
+              onClick={() => onNavigate("Live Detection")}
+            >
+              Launch detector <ArrowUpRight size={17} />
+            </button>
             <button
               className="text-button"
-              onClick={() => onNavigate(chapter.destination)}
+              onClick={() =>
+                document.getElementById("research")?.scrollIntoView({
+                  behavior: window.matchMedia(
+                    "(prefers-reduced-motion: reduce)",
+                  ).matches
+                    ? "instant"
+                    : "smooth",
+                })
+              }
             >
-              Open {chapter.destination.toLowerCase()} <ArrowRight size={15} />
+              Explore the research <ArrowDown size={14} />
             </button>
-          </SpotlightCard>
+          </div>
+        </div>
+        <div className="hero-object-caption">
+          <span>STUDY 001 / THE TRUST BOUNDARY</span>
+          <span>FORM STUDY · CHROME / VOID</span>
+        </div>
+        <div className="void-hero-bottom">
+          <span>DETECT / DISTORT / MEASURE</span>
+          <span>
+            <i
+              className={`status-dot ${health?.status === "ok" ? "online" : ""}`}
+            />
+            {health?.status === "ok"
+              ? "RESEARCH API CONNECTED"
+              : "RESEARCH API NOT CONNECTED"}
+          </span>
+          <ArrowDown size={16} />
+        </div>
+      </section>
+      <section className="research-statement" id="research">
+        <span className="eyebrow">THE QUESTION / 001</span>
+        <h2>
+          When does language
+          <br />
+          become <span>an instruction?</span>
+        </h2>
+        <p>
+          A prompt can look like ordinary text and still attempt to cross a
+          trust boundary. InjeX is an instrument for making that boundary
+          visible.
+        </p>
+      </section>
+      <section className="research-chapters" aria-label="The research loop">
+        {chapters.map((chapter) => (
+          <article className="research-chapter" key={chapter.number}>
+            <span className="chapter-number">/{chapter.number}</span>
+            <div>
+              <span className="eyebrow">{chapter.subtitle}</span>
+              <h3>
+                {chapter.name}
+                <span>.</span>
+              </h3>
+              <p>{chapter.text}</p>
+            </div>
+            <button
+              className="chapter-launch"
+              onClick={() => onNavigate(chapter.destination)}
+              aria-label={`Open ${chapter.destination}`}
+            >
+              <chapter.icon size={20} strokeWidth={1} />
+              <ArrowUpRight size={24} strokeWidth={1} />
+            </button>
+          </article>
         ))}
-      </div>
-      <section className="preview-section">
+      </section>
+      <section className="void-preview">
         <div className="preview-copy">
-          <p className="eyebrow">THE FIRST QUESTION</p>
+          <span className="eyebrow">THE FIRST OBSERVATION</span>
           <h2>
-            What is this
+            A few words.
             <br />
-            prompt <em>really</em>
-            <br />
-            asking?
+            <span>A different intent.</span>
           </h2>
           <p>
-            Start with an example, or write your own. Open it in the detector to
-            inspect the actual classification.
+            Choose a research prompt, or write your own. Take it to the real
+            detector and inspect the returned evidence.
           </p>
-          <div className="preview-note">
-            <Braces size={18} />
-            <span>
-              Your input goes to the configured InjeX API.
-              <br />
-              No external analytics or prompt telemetry.
-            </span>
-          </div>
+          <span className="preview-privacy">
+            <Braces size={17} /> No external prompt telemetry.
+          </span>
         </div>
         <div className="preview-console">
           <div className="console-bar">
-            <div>
-              <i />
-              <i />
-              <i />
-            </div>
-            <span>PROMPT / INSPECTION</span>
-            <ScanLine size={15} />
+            <span>INPUT / PLAIN TEXT</span>
+            <ScanLine size={16} />
           </div>
           <div className="preview-tabs">
             {["Instruction override", "Benign request", "Your prompt"].map(
               (name, index) => (
                 <button
                   key={name}
-                  className={active === index ? "active" : ""}
+                  className={preset === index ? "active" : ""}
                   onClick={() => {
-                    setActive(index);
+                    setPreset(index);
                     setPreview(
                       index === 0
                         ? promptOptions[0].text
@@ -252,15 +234,16 @@ export default function Overview({
               aria-label="Detector preview prompt"
               value={preview}
               maxLength={20000}
-              onChange={(e) => {
-                setPreview(e.target.value);
-                setActive(2);
+              onChange={(event) => {
+                setPreview(event.target.value);
+                setPreset(2);
               }}
-              placeholder="Write the prompt you want to inspect…"
+              placeholder="What would you like to inspect?"
+              spellCheck={false}
             />
           </div>
           <div className="preview-console-bottom">
-            <span>{preview.length} characters</span>
+            <span>{preview.length} CHARACTERS</span>
             <button
               className="primary"
               onClick={launch}
@@ -270,35 +253,25 @@ export default function Overview({
             </button>
           </div>
           <p className="preview-disclaimer">
-            <span
-              className={`status-dot ${health?.status === "ok" ? "online" : ""}`}
-            />
-            {health?.status === "ok"
-              ? "API connected · Classification runs in the detector"
-              : "Service offline · Editor available, detection requires API"}
+            Classification runs in the detector using the configured InjeX API.
           </p>
         </div>
       </section>
-      <section className="evidence-section">
+      <section className="overview-benchmark">
         <div className="section-heading">
-          <div>
-            <p className="eyebrow">EVIDENCE, NOT ASSUMPTIONS</p>
-            <h2>
-              Improvement is
-              <br />
-              <em>something you measure.</em>
-            </h2>
-          </div>
-          <button
-            className="text-button"
-            onClick={() => onNavigate("Comparison")}
-          >
-            Compare the models <ArrowUpRight size={16} />
-          </button>
+          <span className="eyebrow">THE EVIDENCE / CLEAN TEST SET</span>
+          <a className="text-button" href="#/comparison">
+            Open benchmark <ArrowUpRight size={15} />
+          </a>
         </div>
-        <div className="evidence-row">
+        <h2>
+          Progress is a measurement.
+          <br />
+          <span>Never an assumption.</span>
+        </h2>
+        <div className="overview-benchmark-values">
           <div>
-            <span>BASELINE / CLEAN ACCURACY</span>
+            <span>BASELINE ACCURACY</span>
             <strong>
               {data?.available
                 ? formatPercent(data.baseline?.clean?.accuracy)
@@ -307,50 +280,42 @@ export default function Overview({
             <small>Original training distribution</small>
           </div>
           <div>
-            <span>IMPROVED / CLEAN ACCURACY</span>
-            <strong className="copper">
+            <span>IMPROVED ACCURACY</span>
+            <strong>
               {data?.available
                 ? formatPercent(data.improved?.clean?.accuracy)
                 : "—"}
             </strong>
             <small>Adversarially augmented training</small>
           </div>
-          <div className="evidence-context">
-            <span className="mono">THE EXPERIMENT</span>
-            <p>
-              Word + character TF-IDF.
-              <br />
-              Logistic regression.
-              <br />
-              The same evaluation scenarios.
-            </p>
-            <small>
+          <p>
+            Word + character TF-IDF.
+            <br />
+            Logistic regression.
+            <br />
+            Real training evidence.
+            <span>
               {data?.available
-                ? "Values from backend training metadata."
-                : "Evaluation data appears when the research API and training metadata are available."}
-            </small>
-          </div>
+                ? "Values returned by the research API."
+                : "No evaluation data has been returned."}
+            </span>
+          </p>
         </div>
       </section>
-      <section className="overview-cta">
-        <div>
-          <p className="eyebrow">LOOK CLOSER</p>
-          <h2>
-            The input is where
+      <section className="void-cta">
+        <span className="eyebrow">THE NEXT EXPERIMENT IS YOURS.</span>
+        <a href="#/attack-lab">
+          <span>
+            ENTER
             <br />
-            <em>the experiment begins.</em>
-          </h2>
+            THE LAB.
+          </span>
+          <ArrowUpRight strokeWidth={0.7} />
+        </a>
+        <div>
+          <span>INJEX / AN ACADEMIC EXPLORATION OF PROMPT SECURITY</span>
+          <span>KEEP QUESTIONING THE INPUT.</span>
         </div>
-        <button
-          className="round-link"
-          onClick={() => onNavigate("Attack Lab")}
-          aria-label="Open Attack Lab"
-        >
-          <ArrowUpRight size={40} strokeWidth={1} />
-        </button>
-        <span className="cta-caption">
-          ENTER THE ATTACK LAB <ChevronRight size={14} />
-        </span>
       </section>
     </div>
   );

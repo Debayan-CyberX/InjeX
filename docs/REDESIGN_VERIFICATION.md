@@ -1,4 +1,6 @@
-# InjeX redesign verification
+# InjeX initial redesign verification
+
+Historical record for the earlier Observatory design. Superseded by [VOID verification](VOID_VERIFICATION.md), which includes trained-model checks and the public deployment.
 
 Verified locally on 18 October 2026 using Chrome headless, Playwright, the production Vite preview, and an isolated instance of the repository's existing FastAPI app.
 

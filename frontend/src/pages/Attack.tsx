@@ -65,7 +65,7 @@ export default function Attack() {
     }
   }
   return (
-    <>
+    <div className="attack-layout">
       <section className="attack-setup">
         <div className="attack-source">
           <div className="panel-heading">
@@ -347,7 +347,12 @@ export default function Attack() {
                   </div>
                 </>
               ) : view === "List" ? (
-                <div className="table-wrap">
+                <div
+                  className="table-wrap"
+                  tabIndex={0}
+                  role="region"
+                  aria-label="Experiment variants table"
+                >
                   <table>
                     <thead>
                       <tr>
@@ -487,6 +492,6 @@ export default function Attack() {
           not separately classified by this endpoint.
         </p>
       </div>
-    </>
+    </div>
   );
 }
